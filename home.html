@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      #container{
+            display: flex;
+            height: 56px;
+            padding: 0 16px;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid grey;
+
+        }
+        .sub{
+            display: flex;
+            height: 56px;
+            padding: 0 16px;
+            flex-direction: row;
+            align-items: center;
+            
+        }
+        .sub h3 {
+    padding-left: 30px;
+    padding-right: 10px;
+  }
+  #data{
+        margin-top: 50px;
+    }
+    #data img{
+        height: 200px;
+        width: 200px;
+    }
+    </style>
+</head>
+<body>
+  
+    
+  
+</body>
+</html>
+
+
+<script type="module">
+    import mynavbar from "./components/navbar.js"
+    import {getdata,appenddata} from "./scripts/showdata.js"
+    
+    document.body.innerHTML=mynavbar()
+    let btn=document.getElementById("btn")
+    function senddata(){
+ let data1=document.getElementById("query").value;
+ let response=getdata(`https://www.themealdb.com/api/json/v1/1/search.php?s=${data1}`)
+ response.then((data)=>{
+    let parent= document.getElementById("data")
+       appenddata(data,parent);
+    });  
+
+}
+   btn.addEventListener("click",senddata);
+    
+   
+    
+    
+    </script>
+    
